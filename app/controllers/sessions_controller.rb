@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in user
       # チェックボックスにチェックがあれば「1」が入る。「1」であればrememberメソッドを実行、そうでなければforgetメソッド実行
       params[:session][:remember_me] == '1' ? remember(user) : forget(user) 
-      redirect_to user
+      redirect_back_or user # users#showへリダイレクト
     else
       flash.now[:danger] = "認証に失敗しました。"
       render :new
